@@ -1,4 +1,4 @@
-//  ViewController.swift
+//  LocationListViewController .swift
 //  The Weather Gift App
 //
 //  Created by Jennifer Joseph
