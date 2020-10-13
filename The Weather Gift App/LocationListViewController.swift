@@ -50,8 +50,18 @@ class LocationListViewController: UIViewController {
         
     }
     
+    
+    func saveLocations() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(weatherLocations) {
+            UserDefaults.standard.set(encoded, forKey: "weatherLocations")
+        }
+        print("Error: saveLocations() did not work")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         selectedLocationIndex = tableView.indexPathForSelectedRow!.row
+        saveLocations()
     }
     
     
