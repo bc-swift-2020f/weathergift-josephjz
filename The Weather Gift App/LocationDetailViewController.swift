@@ -19,7 +19,7 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     // this is an implicitly unwrapped optional
-    var weatherLocation : WeatherLocation!
+    var weatherDetail : WeatherDetail!
     
     var locationIndex = 0 
     
@@ -41,17 +41,21 @@ class LocationDetailViewController: UIViewController {
         
         let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
         
-        weatherLocation = pageViewController.weatherLocations[locationIndex]
+        let weatherLocation = pageViewController.weatherLocations[locationIndex]
         
-        dateLabel.text = ""
-        placeLabel.text = weatherLocation.name
-        temperatureLabel.text = "--°"
-        summaryLabel.text = ""
+        weatherDetail = WeatherDetail(name: weatherLocation.name, latitude: weatherLocation.latitude, longitude: weatherLocation.longitude)
         
         pageControl.numberOfPages = pageViewController.weatherLocations.count
         pageControl.currentPage = locationIndex
         
-        weatherLocation.getData()
+        weatherDetail.getData {
+            DispatchQueue.main.async {
+                self.dateLabel.text = self.weatherDetail.timezone
+                self.placeLabel.text = self.weatherDetail.name
+                self.temperatureLabel.text = "\(self.weatherDetail.temperature)°"
+                self.summaryLabel.text = self.weatherDetail.summary
+            }
+        }
     }
     
     
