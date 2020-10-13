@@ -50,6 +50,8 @@ class LocationDetailViewController: UIViewController {
         
         pageControl.numberOfPages = pageViewController.weatherLocations.count
         pageControl.currentPage = locationIndex
+        
+        weatherLocation.getData()
     }
     
     
@@ -79,6 +81,7 @@ class LocationDetailViewController: UIViewController {
     @IBAction func pageControlTapped(_ sender: UIPageControl) {
         
         let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+        
 
         var direction: UIPageViewController.NavigationDirection = .forward
         
@@ -91,3 +94,4 @@ class LocationDetailViewController: UIViewController {
     }
     
 }
+

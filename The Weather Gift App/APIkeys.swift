@@ -11,5 +11,8 @@ struct APIkeys {
     
     // by creating this using static instead of var allows us to just refer to type APIkeys and then say . and name of struct (won't need to create a variable with a struct instance)
     //      just refer to APIkeys.googlePlacesKey
+    
     static let googlePlacesKey = "AIzaSyDq9fBF-FwL8k6Q3wH_5qrJRf-z0JNoIvw"
+    
+    static let openWeatherKey = "aa41d5ba29e5ca8f734fb35456d61799"
 }
