@@ -25,20 +25,23 @@ class LocationListViewController: UIViewController {
     // creates empty array with elements of type WeatherLocation structs from WeatherLocation.swift file
     var weatherLocations: [WeatherLocation] = []
     
+    var selectedLocationIndex = 0
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // populate weatherLocations array -- create 3 WeatherLocation variables and append them to array declared in class
         // when you type WeatherLocation( XCode will fill in all the variable types defined in struct
-        var weatherLocation = WeatherLocation(name: "Chestnut Hill, MA", latitude: 0, longitude: 0)
-        weatherLocations.append(weatherLocation)
-        
-        weatherLocation = WeatherLocation(name: "Lilongwe, Malawi", latitude: 0, longitude: 0)
-        weatherLocations.append(weatherLocation)
-        
-        weatherLocation = WeatherLocation(name: "Buenos Aires, Argentina", latitude: 0, longitude: 0)
-        weatherLocations.append(weatherLocation)
+//        var weatherLocation = WeatherLocation(name: "Chestnut Hill, MA", latitude: 0, longitude: 0)
+//        weatherLocations.append(weatherLocation)
+//        
+//        weatherLocation = WeatherLocation(name: "Lilongwe, Malawi", latitude: 0, longitude: 0)
+//        weatherLocations.append(weatherLocation)
+//        
+//        weatherLocation = WeatherLocation(name: "Buenos Aires, Argentina", latitude: 0, longitude: 0)
+//        weatherLocations.append(weatherLocation)
         
         
         // REMEMBER: if you use a Table View, MUST ALSO SET delegate and data source to self
@@ -46,6 +49,13 @@ class LocationListViewController: UIViewController {
         tableView.dataSource = self
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        selectedLocationIndex = tableView.indexPathForSelectedRow!.row
+    }
+    
+    
+    
     
     
     // @IBActions for Bar Buttons
