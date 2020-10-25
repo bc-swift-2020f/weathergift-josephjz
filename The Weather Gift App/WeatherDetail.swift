@@ -60,8 +60,7 @@ class WeatherDetail: WeatherLocation {
                 self.currentTime = result.current.dt
                 self.temperature = Int(result.current.temp.rounded())
                 self.summary = result.current.weather[0].description
-                self.dailyIcon = result.current.weather[0].icon
-                
+                self.dailyIcon = self.fileNameForIcon(openWeatherIconValue: result.current.weather[0].icon)  // parameter is icon values and returns back file names we are going to use for weather images instead
             } catch {
                 print("json error: \(error.localizedDescription)")
             }
@@ -70,6 +69,34 @@ class WeatherDetail: WeatherLocation {
         
         task.resume()
         
+    }
+    
+    
+    private func fileNameForIcon(openWeatherIconValue : String) -> String {
+        var image = ""
+        
+        // GET BETTER PIC CHOICES BASED ON WEATHER / TEMPERATURE
+        // images that will be more accurate 
+        
+        switch openWeatherIconValue {
+        case "01d", "01n":
+            image = "sunny"
+        case "02d", "02n", "03d", "03n", "04d", "04n":
+            image = "cloudy"
+        case "09d", "09n":
+            image = "rainy"
+        case "10n", "10d":
+            image = "rainy"
+        case "11d", "11n":
+            image = "thunderstorm"
+        case "13d", "13n":
+            image = "snowy"
+        case "50d", "50n":  // these should be pics for foggy, but I only have windy right now
+            image = "windy"
+        default:
+            image = ""
+        }
+       return image
     }
     
 }
