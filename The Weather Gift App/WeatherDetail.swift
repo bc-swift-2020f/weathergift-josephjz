@@ -71,6 +71,8 @@ class WeatherDetail: WeatherLocation {
         
     }
     
+
+    // adding "private" in front of this function defintion restricts access to the fileNameForIcon() function to the WeatherDetail class only! Will not be avaiable in other files, classes, or structs
     
     private func fileNameForIcon(openWeatherIconValue : String) -> String {
         var image = ""
